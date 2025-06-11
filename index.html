@@ -1,46 +1,21 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-  <script>
-    // 비디오 재생/정지 핸들러 컴포넌트
-    AFRAME.registerComponent('video-handler', {
-      init: function () {
-        const video = document.querySelector("#myVideo");
-        this.el.addEventListener('targetFound', () => {
-          video.play();
-        });
-        this.el.addEventListener('targetLost', () => {
-          video.pause();
-          video.currentTime = 0; // 필요시 처음부터 재생
-        });
-      }
-    });
-  </script>
-</head>
-<body>
-  <a-scene
-    mindar-image="imageTargetSrc: ./src.mind;"
-    color-space="sRGB"
-    renderer="colorManagement: true, physicallyCorrectLights"
-    vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false"
-  >
-    <a-assets>
-      <video id="myVideo" src="./src.mp4" preload="auto" loop="false" webkit-playsinline playsinline crossorigin="anonymous"></video>
-    </a-assets>
-    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-    <a-entity mindar-image-target="targetIndex: 0" video-handler>
-      <a-video 
-        src="#myVideo" 
-        position="0 0 0.1" 
-        width="1" 
-        height="0.56"
-        rotation="0 0 0"
-      ></a-video>
-    </a-entity>
-  </a-scene>
-</body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.0.0/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  </head>
+  <body>
+    <a-scene mindar-image="imageTargetSrc: ./src.mind;; maxTrack: 2" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-assets>
+        <a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity mindar-image-target="targetIndex: 1">
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#bearModel" animation-mixer>
+      </a-entity>
+    </a-scene>
+  </body>
 </html>
