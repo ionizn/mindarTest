@@ -147,6 +147,25 @@
       padding-top: 60px;
     }
   </style>
+  <script>
+    AFRAME.registerComponent('video-handler', {
+      init: function () {
+        // id에 따라 비디오 선택
+        let videoId = '';
+        if (this.el.id === 'marker1') videoId = '#video1';
+        if (this.el.id === 'marker2') videoId = '#video2';
+        if (this.el.id === 'marker3') videoId = '#video3';
+        const video = document.querySelector(videoId);
+        this.el.addEventListener('targetFound', () => {
+          video.play();
+        });
+        this.el.addEventListener('targetLost', () => {
+          video.pause();
+          video.currentTime = 0;
+        });
+      }
+    });
+  </script>
 </head>
 
 <body>
@@ -182,17 +201,17 @@
 
     <!-- 마커 1 -->
     <a-entity id="marker1" mindar-image-target="targetIndex: 0" video-handler>
-      <a-video src="#video1" width="1" height="1.5" position="0 0 0"></a-video>
+      <a-video src="#video1" width="1" height="1" position="0 0 0"></a-video>
     </a-entity>
     
     <!-- 마커 2 -->
-    <a-entity id="marker2" mindar-image-target="targetIndex: 1">
-      <a-video src="#video2" width="1" height="1.5" position="0 0 0"></a-video>
+    <a-entity id="marker2" mindar-image-target="targetIndex: 1" video-handler>
+      <a-video src="#video2" width="1" height="1" position="0 0 0"></a-video>
     </a-entity>
     
     <!-- 마커 3 -->
-    <a-entity id="marker3" mindar-image-target="targetIndex: 2">
-      <a-video src="#video3" width="1" height="1.5" position="0 0 0"></a-video>
+    <a-entity id="marker3" mindar-image-target="targetIndex: 2" video-handler>
+      <a-video src="#video3" width="1" height="1" position="0 0 0"></a-video>
     </a-entity>
   </a-scene>
 
