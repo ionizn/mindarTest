@@ -171,28 +171,28 @@
 
     <a-assets>
       <!-- 마커 1용 비디오 -->
-      <video id="video1" playsinline webkit-playsinline crossorigin="anonymous" src="./src.mp4"></video>
+      <video id="video1" playsinline webkit-playsinline crossorigin="anonymous" muted autoplay src="./src.mp4"></video>
       <!-- 마커 2용 비디오 -->
-      <video id="video2" playsinline webkit-playsinline crossorigin="anonymous" src="./src.mp4"></video>
+      <video id="video2" playsinline webkit-playsinline crossorigin="anonymous" muted autoplay src="./src.mp4"></video>
       <!-- 마커 3용 비디오 -->
-      <video id="video3" playsinline webkit-playsinline crossorigin="anonymous" src="./src.mp4"></video>
+      <video id="video3" playsinline webkit-playsinline crossorigin="anonymous" muted autoplay src="./src.mp4"></video>
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
     <!-- 마커 1 -->
     <a-entity id="marker1" mindar-image-target="targetIndex: 0">
-      <a-video src="#video1" width="1" height="1.5" position="0 0 0"></a-video>
+      <a-video src="#video1" width="1" height="1.5" position="0 0 0" autoplay="true"></a-video>
     </a-entity>
     
     <!-- 마커 2 -->
     <a-entity id="marker2" mindar-image-target="targetIndex: 1">
-      <a-video src="#video2" width="1" height="1.5" position="0 0 0"></a-video>
+      <a-video src="#video2" width="1" height="1.5" position="0 0 0" autoplay="true"></a-video>
     </a-entity>
     
     <!-- 마커 3 -->
     <a-entity id="marker3" mindar-image-target="targetIndex: 2">
-      <a-video src="#video3" width="1" height="1.5" position="0 0 0"></a-video>
+      <a-video src="#video3" width="1" height="1.5" position="0 0 0" autoplay="true"></a-video>
     </a-entity>
   </a-scene>
 
