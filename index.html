@@ -182,16 +182,14 @@
       const soundToggle = document.getElementById('sound-toggle');
       if (!soundToggle) return;
       soundToggle.addEventListener('click', function() {
-        // 현재 재생 중인 비디오 찾기
-        let video = null;
-        if (document.querySelector('#marker1').components['mindar-image-target'].isTracking) video = document.querySelector('#video1');
-        else if (document.querySelector('#marker2').components['mindar-image-target'].isTracking) video = document.querySelector('#video2');
-        else if (document.querySelector('#marker3').components['mindar-image-target'].isTracking) video = document.querySelector('#video3');
-        if (!video) return;
-        video.muted = !video.muted;
-        soundToggle.classList.toggle('on', !video.muted);
-        soundToggle.classList.toggle('off', video.muted);
-        soundToggle.innerText = video.muted ? '🔇 Sound Off' : '🔊 Sound On';
+        // 모든 비디오에 대해 mute 토글
+        const videos = [document.querySelector('#video1'), document.querySelector('#video2'), document.querySelector('#video3')];
+        // 현재 상태를 첫 번째 비디오 기준으로 판단
+        const isMuted = videos[0] && videos[0].muted;
+        videos.forEach(v => { if (v) v.muted = !isMuted; });
+        soundToggle.classList.toggle('on', isMuted);
+        soundToggle.classList.toggle('off', !isMuted);
+        soundToggle.innerText = isMuted ? '🔊 Sound On' : '🔇 Sound Off';
       });
     });
   </script>
